@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/mdx": "^7.0.3",
     "@astrojs/svelte": "^9.0.1",
-    "@splendidlabz/astro": "^7.6.0",
+    "@splendidlabz/astro": "^7.6.1",
     "@splendidlabz/styles": "^4.13.0",
     "@splendidlabz/svelte": "^4.13.0",
     "@splendidlabz/utils": "^1.12.1",

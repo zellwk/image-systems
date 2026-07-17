@@ -1,16 +1,6 @@
 ---
-import FfmpegNotice from '@/components/FfmpegNotice.astro'
 import Specimen from '@/layouts/Specimen.astro'
 import { Video } from '@splendidlabz/astro'
-import { execSync } from 'node:child_process'
-
-// Video reads dimensions with ffmpeg, which StackBlitz can't run.
-let hasFfmpeg = true
-try {
-  execSync('ffprobe -version', { stdio: 'ignore' })
-} catch {
-  hasFfmpeg = false
-}
 ---
 
 <Specimen
@@ -18,24 +8,16 @@ try {
   lede="Astro has no video pipeline, so Video fills the gap: it reads the video's dimensions and writes width, height, and aspect-ratio so the layout doesn't shift."
   code="src/pages/videos.astro"
 >
-  {!hasFfmpeg && <FfmpegNotice />}
+  <Video
+    src="/src/assets/background-video.mp4"
+    caption="A Video with controls — and a caption, via the caption prop."
+  />
 
-  {
-    hasFfmpeg && (
-      <>
-        <Video
-          src="/src/assets/background-video.mp4"
-          caption="A Video with controls — and a caption, via the caption prop."
-        />
-
-        <p>
-          Inspect the <code>video</code> element: <code>width</code>,
-          <code>height</code>, and an <code>aspect-ratio</code> style reserve
-          the space before the video loads. Like <code>Image</code>, it wraps
-          in a <code>figure</code> — disable with{' '}
-          <code>figure=&#123;false&#125;</code>.
-        </p>
-      </>
-    )
-  }
+  <p>
+    Inspect the <code>video</code> element: <code>width</code>,
+    <code>height</code>, and an <code>aspect-ratio</code> style reserve
+    the space before the video loads. Like <code>Image</code>, it wraps
+    in a <code>figure</code> — disable with{' '}
+    <code>figure=&#123;false&#125;</code>.
+  </p>
 </Specimen>
