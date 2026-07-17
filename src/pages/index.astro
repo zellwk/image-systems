@@ -121,7 +121,7 @@ const examples = [
 
 <Base>
   {/* Pattern defs for the svg-backgrounds thumb. Renders nothing. */}
-  <SVG icon="patterns" />
+  <SVG name="patterns" />
 
   <div class="max-w-standard mx-auto vertical gap-6">
     <header class="content prose vertical gap-2">
@@ -170,7 +170,7 @@ const examples = [
                   />
                 )}
                 {example.thumb.svg && (
-                  <SVG class="thumb-svg accent" icon={example.thumb.svg} />
+                  <SVG class="thumb-svg accent" name={example.thumb.svg} />
                 )}
                 {example.thumb.pattern && (
                   <SVGBackground pattern={example.thumb.pattern} />
