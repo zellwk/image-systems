@@ -1,0 +1,22 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { Video } from '@splendidlabz/astro'
+---
+
+<Specimen
+  title="Videos without layout shifts"
+  lede="Astro has no video pipeline, so Video fills the gap: it reads the video's dimensions and writes width, height, and aspect-ratio so the layout doesn't shift."
+  code="src/pages/videos.astro"
+>
+  <Video
+    src="/src/assets/background-video.mp4"
+    caption="A Video with controls — and a caption, via the caption prop."
+  />
+
+  <p>
+    Inspect the <code>video</code> element: <code>width</code>,
+    <code>height</code>, and an <code>aspect-ratio</code> style reserve the
+    space before the video loads. Like <code>Image</code>, it wraps in a
+    <code>figure</code> — disable with <code>figure=&#123;false&#125;</code>.
+  </p>
+</Specimen>

@@ -1,0 +1,32 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { SVG, SVGBackground } from '@splendidlabz/astro'
+---
+
+<Specimen
+  title="SVG backgrounds"
+  lede="Patterns defined once in src/svg/patterns.svg, painted anywhere with SVGBackground."
+  code="src/pages/svg-backgrounds.astro + src/svg/patterns.svg"
+>
+  {/* The pattern defs — width and height are 0, so nothing renders here. */}
+  <SVG icon="patterns" />
+
+  <section class="stack bg-purple-100 rounded-lg overflow-hidden">
+    <SVGBackground pattern="temple" />
+    <div class="vertical gap-2" style="padding: 3rem">
+      <h3>The temple pattern</h3>
+      <p>
+        A <code>rect</code> filled with <code>url(#temple)</code>, sized to
+        its container.
+      </p>
+    </div>
+  </section>
+
+  <section class="stack bg-blue-100 rounded-lg overflow-hidden">
+    <SVGBackground pattern="dots" />
+    <div class="vertical gap-2" style="padding: 3rem">
+      <h3>The dots pattern</h3>
+      <p>Same container, different <code>pattern</code> id.</p>
+    </div>
+  </section>
+</Specimen>

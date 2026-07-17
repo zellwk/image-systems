@@ -1,0 +1,355 @@
+---
+import Base from '@/layouts/Base.astro'
+import { Image, SVG, SVGBackground } from '@splendidlabz/astro'
+import bgVideo from '../assets/background-video.mp4'
+
+// Ordered to follow the lessons in the Image Systems module.
+const examples = [
+  {
+    kind: 'astro-image',
+    category: 'Built-in',
+    title: "Astro's Image component",
+    href: '/astro-image/',
+    description:
+      'The built-in Image component: optimized formats, srcset, and lazy-loading.',
+    concepts: ['astro:assets', 'widths', 'priority'],
+    thumb: { image: '/src/assets/penguin.png' },
+  },
+  {
+    kind: 'astro-picture',
+    category: 'Built-in',
+    title: "Astro's Picture component",
+    href: '/astro-picture/',
+    description:
+      'A superset of Image that outputs modern formats with a fallback.',
+    concepts: ['astro:assets', 'formats'],
+    thumb: { image: '/src/assets/image3.png' },
+  },
+  {
+    kind: 'improvements',
+    category: 'Custom component',
+    title: 'Improvements over Image and Picture',
+    href: '/improvements/',
+    description:
+      'A custom image importer: write the path into src, get widths and formats for free.',
+    concepts: ['CustomImage', 'Splendid Image'],
+    thumb: { image: '/src/assets/image1.png' },
+  },
+  {
+    kind: 'markdown',
+    category: 'Content',
+    title: 'Images in Markdown and MDX',
+    href: '/markdown-images/',
+    description:
+      'Markdown image syntax vs importing an enhanced component in MDX.',
+    concepts: ['Markdown', 'MDX'],
+    thumb: { image: '/src/assets/image2.png' },
+  },
+  {
+    kind: 'framework',
+    category: 'Frameworks',
+    title: 'Images in framework components',
+    href: '/framework-components/',
+    description:
+      'Astro image components don’t work inside Svelte — pass them through a slot or a prop.',
+    concepts: ['Slots', 'getImage', 'img utility'],
+    thumb: { image: '/src/assets/stars.png' },
+  },
+  {
+    kind: 'backgrounds',
+    category: 'Backgrounds',
+    title: 'Background images',
+    href: '/background-images/',
+    description:
+      'Optimized backgrounds: inline background-image, or a real image with object-fit.',
+    concepts: ['BackgroundImage', 'stack', 'backgroundMode'],
+    thumb: { image: '/src/assets/hero.jpg' },
+  },
+  {
+    kind: 'art-direction',
+    category: 'Picture',
+    title: 'Art direction',
+    href: '/art-direction/',
+    description:
+      'A portrait image on mobile, a landscape one on desktop. Resize to see the swap.',
+    concepts: ['Picture', 'artDirection'],
+    thumb: { image: '/src/assets/hiker-landscape.jpg' },
+    featured: true,
+  },
+  {
+    kind: 'videos',
+    category: 'Video',
+    title: 'Videos without layout shifts',
+    href: '/videos/',
+    description:
+      'The Video component reads dimensions and reserves space before the video loads.',
+    concepts: ['Video', 'aspect-ratio'],
+    thumb: { image: '/src/assets/background.png' },
+  },
+  {
+    kind: 'background-videos',
+    category: 'Video',
+    title: 'GIF replacements and background videos',
+    href: '/background-videos/',
+    description:
+      'Short-looping videos instead of GIFs — and videos behind content.',
+    concepts: ['gifReplacement', 'backgroundMode'],
+    thumb: { video: '/src/assets/background-video.mp4' },
+  },
+  {
+    kind: 'svg-icons',
+    category: 'SVG',
+    title: 'SVGs and icons',
+    href: '/svg-icons/',
+    description:
+      'Icons from any Iconify set, and custom SVGs inlined by name.',
+    concepts: ['Icon', 'SVG'],
+    thumb: { svg: 'logo' },
+  },
+  {
+    kind: 'svg-backgrounds',
+    category: 'SVG',
+    title: 'SVG backgrounds',
+    href: '/svg-backgrounds/',
+    description:
+      'Pattern defs defined once, painted anywhere with SVGBackground.',
+    concepts: ['patterns.svg', 'SVGBackground'],
+    thumb: { pattern: 'temple' },
+  },
+]
+---
+
+<Base>
+  {/* Pattern defs for the svg-backgrounds thumb. Renders nothing. */}
+  <SVG icon="patterns" />
+
+  <div class="max-w-standard mx-auto vertical gap-6">
+    <header class="content prose vertical gap-2">
+      <p class="eyebrow">Practical Astro</p>
+      <h1>Image systems, one specimen at a time</h1>
+      <p class="lede">
+        Each card is a live page demonstrating one image-system technique.
+        Open one to see the pattern running. Every thumbnail below is also a
+        working demo — rendered with the module's own components.
+      </p>
+      <div class="code-note">
+        <p>A few patterns don't show on screen — read the code instead:</p>
+        <ul>
+          <li>
+            The custom importer in <code>src/components/CustomImage.astro</code>
+          </li>
+          <li>
+            Image-cache steps for CI in <code>.github/workflows/build.yml</code>
+          </li>
+          <li>
+            The responsive-image CSS in <code>src/styles/base/images.css</code>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <ul class="gallery">
+      {
+        examples.map(example => (
+          <li class:list={['card', { 'card--featured': example.featured }]}>
+            <a class="card-link" href={example.href}>
+              <div class="thumb">
+                {example.thumb.image && (
+                  <Image src={example.thumb.image} alt="" backgroundMode />
+                )}
+                {example.thumb.video && (
+                  /* Manual GIF-replacement markup — Video's fallback link
+                     can't nest inside the card's anchor. */
+                  <video
+                    class="object-background"
+                    src={bgVideo}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                  />
+                )}
+                {example.thumb.svg && (
+                  <SVG class="thumb-svg accent" icon={example.thumb.svg} />
+                )}
+                {example.thumb.pattern && (
+                  <SVGBackground pattern={example.thumb.pattern} />
+                )}
+              </div>
+              <div class="card-body vertical gap-1">
+                <p class="eyebrow">{example.category}</p>
+                <h2 class="card-title">{example.title}</h2>
+                <p class="card-desc">{example.description}</p>
+                <ul class="chips">
+                  {example.concepts.map(c => (
+                    <li class="chip">{c}</li>
+                  ))}
+                </ul>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<!-- AI generated styles -->
+<style>
+  .eyebrow {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-blue-600);
+  }
+
+  .lede {
+    color: var(--color-zinc-600);
+    max-width: 48ch;
+  }
+
+  .code-note {
+    font-size: var(--text-sm);
+    color: var(--color-zinc-500);
+    max-width: 56ch;
+  }
+
+  .code-note ul {
+    margin: 0.375rem 0 0;
+    padding-left: 1.1rem;
+  }
+
+  .code-note li {
+    margin-top: 0.2rem;
+  }
+
+  .code-note code {
+    font-size: 0.95em;
+    padding: 0.05em 0.3em;
+    border-radius: 0.25rem;
+    background: var(--color-zinc-100);
+    color: var(--color-zinc-700);
+  }
+
+  .gallery {
+    --accent: var(--color-blue-600);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .card--featured {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .card {
+    border: 1px solid var(--color-zinc-200);
+    border-radius: 0.75rem;
+    background: white;
+    overflow: hidden;
+    transition:
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 28px -18px var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .card-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .thumb {
+    position: relative;
+    /* Contain the negative z-index of object-background children. */
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    background: var(--color-zinc-50);
+    border-bottom: 1px solid var(--color-zinc-200);
+    overflow: hidden;
+  }
+
+  .thumb :global(.thumb-svg) {
+    width: auto;
+    height: 40%;
+  }
+
+  .thumb :global(.accent) {
+    color: var(--accent);
+  }
+
+  .card-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .card-title {
+    font-size: var(--text-11);
+    font-weight: 650;
+    color: var(--color-zinc-800);
+    transition: color 0.18s ease;
+  }
+
+  .card:hover .card-title {
+    color: var(--accent);
+  }
+
+  .card-desc {
+    color: var(--color-zinc-600);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0 0;
+  }
+
+  .chip {
+    font-size: var(--text-sm);
+    line-height: 1.4;
+    padding: 0.125rem 0.5rem;
+    border: 1px solid var(--color-zinc-200);
+    border-radius: 999px;
+    background: var(--color-zinc-50);
+    color: var(--color-zinc-600);
+    white-space: nowrap;
+  }
+
+  /* Featured card: thumb beside copy on wider screens. */
+  @media (min-width: 640px) {
+    .card--featured .card-link {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: stretch;
+    }
+    .card--featured .thumb {
+      aspect-ratio: auto;
+      border-bottom: none;
+      border-right: 1px solid var(--color-zinc-200);
+    }
+    .card--featured .card-body {
+      align-content: center;
+      padding: 2rem;
+    }
+  }
+</style>

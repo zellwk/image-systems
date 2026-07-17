@@ -1,0 +1,41 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { BackgroundImage, Image } from '@splendidlabz/astro'
+---
+
+<Specimen
+  title="Background images"
+  lede="Two ways to optimize background images: an inline background-image property, or a real image with object-fit: cover."
+  code="src/pages/background-images.astro"
+>
+  <h2>Using an inline background-image property</h2>
+  <p>
+    <code>BackgroundImage</code> optimizes the image with
+    <code>getImage</code> and writes it into the CSS
+    <code>background-image</code> property.
+  </p>
+  <BackgroundImage class="rounded-lg overflow-hidden" src="/src/assets/hero.jpg">
+    <div class="vertical gap-2 text-white" style="padding: 3rem">
+      <h3 class="text-white">Background image</h3>
+      <p>The content sets the height. The image covers the space behind it.</p>
+    </div>
+  </BackgroundImage>
+
+  <h2>Using a real image with object-fit: cover</h2>
+  <p>
+    The better experience: a real <code>picture</code> with
+    <code>srcset</code>, overlaid with content in a
+    <code>stack</code>. <code>backgroundMode</code> pins the image to fill the
+    stack.
+  </p>
+  <div class="stack rounded-lg overflow-hidden">
+    <Image src="/src/assets/background.png" alt="" backgroundMode />
+    <div class="vertical gap-2" style="padding: 3rem">
+      <h3>Real image behind content</h3>
+      <p>
+        Browsers still get modern formats and pick the right size from
+        <code>srcset</code>.
+      </p>
+    </div>
+  </div>
+</Specimen>

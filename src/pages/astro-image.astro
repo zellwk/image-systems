@@ -1,0 +1,35 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { Image } from 'astro:assets'
+import myImage from '../assets/penguin.png'
+---
+
+<Specimen
+  title="Astro's Image component"
+  lede="Import the image, pass it into Image. Astro handles encoding, formats, and lazy-loading."
+  code="src/pages/astro-image.astro"
+>
+  <h2>Above the fold</h2>
+  <p>
+    Add <code>priority</code> so the image loads eagerly with high fetch
+    priority. <code>widths</code> produces a <code>srcset</code> so browsers
+    can pick the smallest image that still looks sharp.
+  </p>
+  <Image
+    src={myImage}
+    alt="A very cool penguin!"
+    widths={[400, 800, 1200]}
+    priority
+  />
+
+  <h2>Below the fold</h2>
+  <p>Leave <code>priority</code> out — the image lazy-loads by default.</p>
+  <Image src={myImage} alt="A very cool penguin!" widths={[400, 800, 1200]} />
+
+  <p>
+    Inspect the rendered <code>img</code> to see the generated
+    <code>srcset</code>, <code>width</code>, and <code>height</code> —
+    the height/width pair plus the global CSS in
+    <code>src/styles/base/images.css</code> is what prevents layout shifts.
+  </p>
+</Specimen>

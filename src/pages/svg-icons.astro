@@ -1,0 +1,52 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { SVG } from '@splendidlabz/astro'
+import { Icon } from '@splendidlabz/svelte'
+---
+
+<Specimen
+  title="SVGs and icons"
+  lede="Icons from any Iconify set — no per-set packages, no config. Plus custom SVGs inlined by name."
+  code="src/pages/svg-icons.astro"
+>
+  <h2>Icons from icon packs</h2>
+  <p>
+    <code>Icon</code> (from Splendid Svelte) loads any icon from Iconify's API
+    by name and caches it in <code>localStorage</code>. It's a client
+    component, so icons appear after hydration.
+  </p>
+  <div class="card grid-simple gap-2 [--cols:2]">
+    <div class="horizontal gap-[0.25em]">
+      <Icon class="h-[0.7lh] my-[0.15lh]" icon="tabler:user" client:idle />
+      <span>User</span>
+    </div>
+    <div class="horizontal gap-[0.25em]">
+      <Icon class="h-[0.7lh] my-[0.15lh]" icon="tabler:home" client:idle />
+      <span>Home</span>
+    </div>
+    <div class="horizontal gap-[0.25em]">
+      <Icon class="h-[0.7lh] my-[0.15lh]" icon="tabler:search" client:idle />
+      <span>Search</span>
+    </div>
+    <div class="horizontal gap-[0.25em]">
+      <Icon class="h-[0.7lh] my-[0.15lh]" icon="tabler:settings" client:idle />
+      <span>Settings</span>
+    </div>
+    <div class="horizontal gap-[0.25em]">
+      <Icon class="h-[0.7lh] my-[0.15lh]" icon="tabler:bell" client:idle />
+      <span>Bell</span>
+    </div>
+    <div class="horizontal gap-[0.25em]">
+      <Icon class="h-[0.7lh] my-[0.15lh]" icon="tabler:heart" client:idle />
+      <span>Heart</span>
+    </div>
+  </div>
+
+  <h2>Custom SVGs</h2>
+  <p>
+    <code>SVG</code> (from Splendid Astro) inlines any SVG from
+    <code>src/svg/</code> by name — with <code>viewBox</code>,
+    <code>width</code>/<code>height</code>, and class forwarding handled.
+  </p>
+  <SVG class="h-12 text-blue-600" icon="logo" />
+</Specimen>

@@ -1,0 +1,14 @@
+@layer reset, theme, base, components, utilities;
+
+/*
+ * I use both Tailwind and CSS synergistically when styling.
+ * Methodology: https://magicaldevschool.com/courses/unorthodox-tailwind/
+ * Splendid styles utilities: https://splendidlabz.com/docs/styles/
+ */
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import '@splendidlabz/styles';
+
+/* Local styles and utilities */
+@import './base/index.css';

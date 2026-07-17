@@ -1,0 +1,18 @@
+<svg width="0" height="0">
+  <!-- A lattice of outlined diamonds -->
+  <pattern id="temple" patternUnits="userSpaceOnUse" width="64" height="64">
+    <path
+      d="M32 4 L60 32 L32 60 L4 32 Z M32 20 L44 32 L32 44 L20 32 Z"
+      fill="none"
+      stroke="#9C92AC"
+      stroke-opacity="0.4"
+      stroke-width="2"
+    ></path>
+  </pattern>
+
+  <!-- Scattered dots -->
+  <pattern id="dots" patternUnits="userSpaceOnUse" width="32" height="32">
+    <circle cx="8" cy="8" r="2" fill="#9C92AC" fill-opacity="0.4"></circle>
+    <circle cx="24" cy="24" r="2" fill="#9C92AC" fill-opacity="0.4"></circle>
+  </pattern>
+</svg>

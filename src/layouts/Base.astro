@@ -1,0 +1,28 @@
+---
+import '@/styles/styles.css'
+---
+
+<!--
+  This is a basic HTML scaffold for the purposes of this repo demo.
+  For a full scaffold for SEO purposes, see:
+  https://zellwk.com/courses/practical-astro/seo-and-discovery/
+--><!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Systems</title>
+  </head>
+  <body class="shell-simple">
+    <header class="horizontal py-4 border-b border-(--border-color)">
+      <div class="wrap">
+        <a class="text-zinc-900 text-8" href="/">Image Systems</a>
+      </div>
+    </header>
+    <main class="content">
+      <div class="wrap py-8">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

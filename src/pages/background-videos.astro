@@ -1,0 +1,27 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { Video } from '@splendidlabz/astro'
+---
+
+<Specimen
+  title="GIF replacements and background videos"
+  lede="gifReplacement sets autoplay, loop, muted, and playsinline — the short-looping behaviour of a GIF, at a fraction of the weight."
+  code="src/pages/background-videos.astro"
+>
+  <h2>GIF replacement</h2>
+  <Video src="/src/assets/background-video.mp4" gifReplacement />
+
+  <h2>Background video</h2>
+  <p>
+    Same pattern as background images: video and content in a
+    <code>stack</code>, with <code>backgroundMode</code> pinning the video
+    behind the content.
+  </p>
+  <div class="stack rounded-lg overflow-hidden">
+    <Video src="/src/assets/background-video.mp4" gifReplacement backgroundMode />
+    <div class="vertical gap-2" style="padding: 3rem">
+      <h3>Background video</h3>
+      <p>The content sets the height, and the video fills the space behind it.</p>
+    </div>
+  </div>
+</Specimen>

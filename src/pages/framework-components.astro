@@ -1,0 +1,39 @@
+---
+import Component from '@/components/Component.svelte'
+import YourComponent from '@/components/YourComponent.svelte'
+import Specimen from '@/layouts/Specimen.astro'
+import { Image } from '@splendidlabz/astro'
+import { img } from '@splendidlabz/astro/utils'
+
+// The prop approach: optimize the image first, then pass the result in.
+const image = await img('/src/assets/hero.jpg', {
+  widths: [400, 800, 1200],
+})
+---
+
+<Specimen
+  title="Images in framework components"
+  lede="Astro's image components don't work inside React, Vue, or Svelte. Pass the image through a slot — or optimize it first and pass a prop."
+  code="src/pages/framework-components.astro + src/components/*.svelte"
+>
+  <h2>Passing images through a slot (the best option)</h2>
+  <p>
+    Build the image in Astro, drop it into the Svelte component through a
+    named <code>slot</code>.
+  </p>
+  <YourComponent>
+    <Image slot="image" src="/src/assets/stars.png" alt="A starry night sky." />
+    <p>
+      This card is <code>YourComponent.svelte</code>. The image above was
+      rendered by Splendid Astro's <code>Image</code> and slotted in.
+    </p>
+  </YourComponent>
+
+  <h2>Passing images through a prop</h2>
+  <p>
+    Optimize with <code>getImage</code> (or Splendid's <code>img</code>
+    utility), pass the result in, and write the <code>img</code> tag yourself
+    inside the component.
+  </p>
+  <Component {image} alt="Sweeping mountain valley at golden hour" />
+</Specimen>

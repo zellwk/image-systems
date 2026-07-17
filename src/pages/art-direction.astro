@@ -1,0 +1,25 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { Picture } from '@splendidlabz/astro'
+---
+
+<Specimen
+  title="Art direction"
+  lede="A different image per viewport: portrait on mobile focuses on the person, landscape on desktop includes the scenery. Resize the window to see the swap at 700px."
+  code="src/pages/art-direction.astro"
+>
+  <Picture
+    alt="A hiker on a mountain ridge at dawn"
+    artDirection={[
+      { src: '/src/assets/hiker-portrait.jpg', max: 700 },
+      { src: '/src/assets/hiker-landscape.jpg', min: 700 },
+    ]}
+  />
+
+  <p>
+    Splendid Astro's <code>Picture</code> writes one pair of
+    <code>source</code> tags (avif + webp) per image, each with the right
+    <code>media</code> query. The first image doubles as the fallback —
+    mobile-first. Override it with <code>fallbackIndex</code>.
+  </p>
+</Specimen>

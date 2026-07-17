@@ -1,0 +1,27 @@
+@layer base {
+  html {
+    @apply text-zinc-800;
+  }
+
+  a:not(.button) {
+    --text-color: var(--color-blue-500);
+    --text-hover-color: var(--color-blue-700);
+  }
+
+  /* Inline code — readable chip, tied to the zinc palette. */
+  :not(pre) > code {
+    padding: 0.1em 0.4em;
+    border: 1px solid var(--color-zinc-200);
+    border-radius: 0.35rem;
+    font-size: 0.875em;
+    font-weight: 500;
+    color: var(--color-zinc-800);
+    background: var(--color-zinc-100);
+    white-space: nowrap;
+  }
+}
+
+@utility h2 {
+  @apply text-11;
+  font-weight: 650;
+}

@@ -1,0 +1,24 @@
+---
+import Specimen from '@/layouts/Specimen.astro'
+import { Picture } from 'astro:assets'
+import myImage from '../assets/penguin.png'
+---
+
+<Specimen
+  title="Astro's Picture component"
+  lede="Picture is a superset of Image — it adds alternate formats with modern-format sources and a fallback img."
+  code="src/pages/astro-picture.astro"
+>
+  <Picture
+    src={myImage}
+    alt="A very cool penguin!"
+    formats={['avif', 'webp']}
+    widths={[400, 800, 1200]}
+  />
+
+  <p>
+    Inspect the output: one <code>source</code> per format
+    (<code>avif</code>, <code>webp</code>), each with its own
+    <code>srcset</code>, and a <code>png</code> fallback <code>img</code>.
+  </p>
+</Specimen>

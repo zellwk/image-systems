@@ -1,0 +1,14 @@
+---
+import Base from './Base.astro'
+
+// Hybrid layout: works as a Markdown `layout` (frontmatter arrives on
+// `Astro.props.content`) and as a regular Astro layout (`Astro.props`).
+const props = Astro.props.content || Astro.props
+---
+
+<Base>
+  <div class="content prose max-w-narrow mx-auto vertical gap-4">
+    <h1>{props.title}</h1>
+    <slot />
+  </div>
+</Base>
